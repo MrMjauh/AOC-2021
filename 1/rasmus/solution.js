@@ -2,7 +2,7 @@ const fs = require("fs");
 const os = require('os');
 
 const input = fs.readFileSync("input", "utf-8");
-const readings = input.split(os.EOL).map(readingStr => parseInt(readingStr));
+const readings = input.split('\n').map(readingStr => parseInt(readingStr));
 
 function getAccumulatedReading(readings, pos, size) {
     let sum = 0;
