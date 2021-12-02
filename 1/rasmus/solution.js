@@ -1,5 +1,4 @@
 const fs = require("fs");
-const os = require('os');
 
 const input = fs.readFileSync("input", "utf-8");
 const readings = input.split('\n').map(readingStr => parseInt(readingStr));
