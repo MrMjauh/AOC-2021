@@ -5,9 +5,6 @@ const readings = input.split('\r\n');
 const _MappingSize = 1000;
 
 function insertVectorIntoMatrix(vector, matrix) {
-    let horizontal = vector.vector_start[0] == vector.vector_end[0];
-    let diagonal = !horizontal && vector.vector_start[1] != vector.vector_end[1];
-
     let vector_length = Math.max(Math.abs(vector.vector_end[0] - vector.vector_start[0]), Math.abs(vector.vector_end[1] - vector.vector_start[1]));
     let directionX = Math.sign(vector.vector_end[0] - vector.vector_start[0]);
     let directionY = Math.sign(vector.vector_end[1] - vector.vector_start[1]);
