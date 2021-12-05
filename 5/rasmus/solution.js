@@ -85,6 +85,6 @@ const start = Date.now()
 const countMap = createCountMap(lines, true);
 console.log(`part 1 > ${calculateSolution(countMap)}`);
 const countMapDiagonal = createCountMap(lines, false);
-console.log(`part 1 > ${calculateSolution(countMapDiagonal)}`);
+console.log(`part 2 > ${calculateSolution(countMapDiagonal)}`);
 const elapsedTime = Date.now() - start;
 console.log(`${elapsedTime} ms`);
