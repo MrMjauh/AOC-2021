@@ -32,4 +32,5 @@ function evolveLanternFishes(startingGeneration, days) {
 }
 
 console.log(`Total readings ${startingGeneration.length}`)
-console.log(`part 1 > ${evolveLanternFishes(startingGeneration, 256)}`);
+console.log(`part 1 > ${evolveLanternFishes(startingGeneration, 80)}`);
+console.log(`part 2 > ${evolveLanternFishes(startingGeneration, 256)}`);
