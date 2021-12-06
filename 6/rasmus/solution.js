@@ -15,10 +15,6 @@ function renderGeneration(buckets, needle) {
     return res;
 }
 
-function mod(value, n) {
-    return ((value%n)+n)%n;
-}
-
 function evolveLanternFishes(startingGeneration, days) {
     const buckets = [0, 0, 0, 0, 0, 0, 0, 0, 0];
     for (const fish in startingGeneration) {
