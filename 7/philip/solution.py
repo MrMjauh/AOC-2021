@@ -10,12 +10,16 @@ def Part_2():
   filename = sys.argv[-1]
   with open(filename) as f: arr = [int(i) for i in f.readline().split(",")]
 
-  #Avereage is not a good solution ceil works for sample and floor for input
-  avg = math.floor(sum(arr)/len(arr))
-  fuel = 0
-  for i in arr:
-    fuel += Fuel_Cost(i, avg)
-  return fuel
+  avg_floor = math.floor(sum(arr)/len(arr))
+  avg_ceil = math.ceil(sum(arr)/len(arr))
+  avgs = [avg_floor, avg_ceil]
+  fuel_costs = [0, 0]
+  for i in range(len(avgs)):
+    fuel = 0
+    for j in arr:
+      fuel += Fuel_Cost(j, avgs[i])
+    fuel_costs[i] = fuel
+  return min(fuel_costs)
 
 
 def Fuel_Cost(start, end):
