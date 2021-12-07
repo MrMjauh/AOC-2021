@@ -1,17 +1,10 @@
 const fs = require("fs");
 
 const input = fs.readFileSync("input", "utf-8");
-const readings = input.split(',').map(value =>  parseInt(value));
+const readings = input.split(',').map(value => parseInt(value));
 
 function calculate(readings, special_mode) {
-    const calc_maximum_value = (data) => {
-        let max = 0;
-        for (let i = 0; i < data.length; ++i) {
-            if (max < data[i]) max = data[i];
-        }
-        return max;
-    };
-    const maximum_value = calc_maximum_value(readings);
+    const maximum_value = Math.max(...readings);
     const data = new Array(maximum_value).fill(0);
 
     for (let i = 0; i < readings.length; ++i) {
@@ -22,12 +15,7 @@ function calculate(readings, special_mode) {
         }
     }
 
-    let minimum_fuel_used = Number.MAX_SAFE_INTEGER;
-    for (let i = 0; i < data.length; ++i) {
-        if (minimum_fuel_used > data[i]) minimum_fuel_used = data[i];
-    }
-
-    return minimum_fuel_used;
+    return Math.min(...data);
 }
 
 const start = Date.now()
