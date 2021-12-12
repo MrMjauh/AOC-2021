@@ -55,10 +55,10 @@ function findPaths(current_node, visited, end, found_paths, bonus_visit, bonus_n
     for (let i = 0; i < current_node.connections.length; ++i) {
         let visited_node = visited.find(e => e == current_node.connections[i].name);
         if (visited_node != undefined && !current_node.connections[i].revisitable && current_node.connections[i].name != bonus_node) continue; //Ignore already visited unrevisitable nodes
-        let next_bonus = "" + bonus_node;
+        let next_bonus = bonus_node;
         if (current_node.connections[i].name == bonus_node) next_bonus = ""; //Consume bonus if this is 2nd visit
         if (bonus_visit && !current_node.revisitable && current_node.name != "start") {
-            findPaths(current_node.connections[i], [...visited, current_node.name], end, found_paths, false, "" + current_node.name);
+            findPaths(current_node.connections[i], [...visited, current_node.name], end, found_paths, false, current_node.name);
         }
         findPaths(current_node.connections[i], [...visited, current_node.name], end, found_paths, bonus_visit, next_bonus);
     }
