@@ -39,6 +39,7 @@ const directions2 = arr => {
   return forward * depth;
 };
 
-console.log(directions(commandsArr));
+console.log(directions
+  (commandsArr));
 console.log(directions2(commandsArr));
 
