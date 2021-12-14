@@ -25,7 +25,14 @@ function createCountPairs(wordArr, perPairValue = 1) {
     return pairs;
 }
 
-function generate(template, decodingTable, generations) {
+function insertCount(dict, key, value = 1) {
+    if (!(key in dict)) {
+        dict[key] = 0;
+    }
+    dict[key] += value;
+}
+
+function runGeneration(template, decodingTable, generations) {
     let currentPairs = createCountPairs(template);
 
     for (let i = 0; i < generations; i++) {
@@ -40,10 +47,7 @@ function generate(template, decodingTable, generations) {
             const newPairs = createCountPairs(newWord, currentPairs[pair]);
 
             for (const newPair in newPairs) {
-                if (!(newPair in nextGenerationPairs)) {
-                    nextGenerationPairs[newPair] = 0;
-                }
-                nextGenerationPairs[newPair]  += newPairs[newPair];
+                insertCount(nextGenerationPairs, newPair, newPairs[newPair]);
             }
         }
         currentPairs = nextGenerationPairs;
@@ -56,18 +60,12 @@ function calculateSolution(pairs, initialTemplate) {
     const letters = {};
     for (const pair in pairs) {
         for (const letter of pair.split("")) {
-            if (!(letter in letters)) {
-                letters[letter] = 0;
-            }
-            letters[letter] += (0.5 * pairs[pair]);
+            insertCount(letters, letter, (0.5 * pairs[pair]));
         }
     }
 
     for (const edgeLetter of [initialTemplate[0], initialTemplate[initialTemplate.length - 1]]) {
-        if (!(edgeLetter in letters)) {
-            letters[edgeLetter] = 0;
-        }
-        letters[edgeLetter] += 0.5;
+        insertCount(letters, edgeLetter, 0.5);
     }
 
     let min = Number.POSITIVE_INFINITY;
@@ -85,4 +83,6 @@ function calculateSolution(pairs, initialTemplate) {
     return max - min;
 }
 
-console.log("part 2 > " + calculateSolution(generate([...template], pairs, 40), [...template]));
+const start = Date.now();
+console.log("part 2 > " + calculateSolution(runGeneration([...template], pairs, 40), [...template]));
+console.log(`${Date.now() - start} ms`);
