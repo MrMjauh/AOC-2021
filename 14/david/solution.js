@@ -5,21 +5,6 @@ const readings = input.split(/\r\n\s*\r\n/);
 const polymer = readings[0];
 const mutations = readings[1].split('\r\n').map(e => e.split(" -> "));
 
-/*
-function insert_mutation(polymer, mutations) {
-    let insertions = [];
-    for(let i = 1; i < polymer.length; ++i) {
-        for (mutation of mutations) {
-            if(polymer[i-1] == mutation[0][0] && polymer[i] == mutation[0][1]) insertions.push([i, mutation[1]]);
-        }
-    }
-    let new_polymer = polymer;
-    for (let i = insertions.length - 1; i >= 0; --i) {
-        new_polymer = new_polymer.slice(0, insertions[i][0]) + insertions[i][1] + new_polymer.slice(insertions[i][0])
-    }
-    return new_polymer;
-}
-*/
 const polymer_map_base = new Map();
 for (mutation of mutations) {
     polymer_map_base.set(mutation[0], 0);
@@ -42,11 +27,9 @@ function insert_mutation(polymer_map, mutations) {
     return new_polymer_map;
 }
 
-
 function mutate_polymer(polymer_map, mutations, amount) {
     let new_polymer = polymer_map;
     for (let i = 0; i < amount; ++i) {
-        console.log("Mutation: " + i);
         new_polymer = insert_mutation(new_polymer, mutations);
     }
     return new_polymer;
