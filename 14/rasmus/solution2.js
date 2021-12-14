@@ -85,4 +85,4 @@ function calculateSolution(pairs, initialTemplate) {
 
 const start = Date.now();
 console.log("part 2 > " + calculateSolution(runGeneration([...template], pairs, 40), [...template]));
-console.log(`${Date.now() - start} ms`);
+console.log(`Elapsed time > ${Date.now() - start} ms`);
