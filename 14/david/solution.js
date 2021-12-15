@@ -74,5 +74,7 @@ function calculate_result(polymer_map) {
     return highestValue - lowestValue;
 }
 
+const start = Date.now()
 console.log(`part 1 > ${calculate_result(mutate_polymer(polymer_map, mutations, 10))}`);
 console.log(`part 2 > ${calculate_result(mutate_polymer(polymer_map, mutations, 40))}`);
+console.log(`${Date.now() - start} ms`);
