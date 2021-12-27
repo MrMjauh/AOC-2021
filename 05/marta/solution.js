@@ -74,7 +74,6 @@ const drawLines = () => {
       let ySSlash = [y1R, y2R].sort((a, b) => a - b);
       let counter = 0;
       for (let x = xSSlash[0]; x <= xSSlash[1]; x++) {
-
         if (diagram[x][ySSlash[0] + counter] < 2) {
           diagram[x][ySSlash[0] + counter] += 1;
         }
